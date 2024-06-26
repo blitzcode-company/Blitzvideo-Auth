@@ -8,7 +8,7 @@ services:
       target: serve-frontendauth
       args:
         client_id: "1"
-        client_secret: "MGxkeEExFKq9syAWhBvUSjZWpZxUpbvEbZs1xJ7a"
+        client_secret: "tX88A7GcHav8jtP43xJUiU4lIOcFMv44vKqN1PhU"
     ports:
       - "3002:80"
     networks:
