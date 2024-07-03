@@ -28,6 +28,9 @@
                   <div *ngIf="loginAlerta" class="error">
                     {{ loginAlerta }}
                   </div>         
+                  <div *ngIf="usuarioRegistradoExitosamente">
+                    Usuario registrado con éxito. Por favor, inicia sesión.
+                  </div>         
                 </div>
                 <div class="field padding-bottom--24">
                   <button class="boton">Iniciar sesion</button>

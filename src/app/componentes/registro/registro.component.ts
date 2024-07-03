@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { StatusService } from '../../servicios/status.service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { MensajeService } from '../../servicios/mensaje.service';
 
 @Component({
   selector: 'app-registro',
@@ -15,9 +16,14 @@ export class RegistroComponent {
   public sinCredenciales: boolean = false;
   public passwordSinCoincidir: boolean = false;
   usuarioYaExiste = false;
+  usuarioRegistradoExitosamente = false;
 
-
-  constructor(private api:AuthService, private router:Router, private status: StatusService, private titleService: Title ){}
+  constructor(private api:AuthService, 
+    private router:Router, 
+    private status: StatusService, 
+    private titleService: Title,     
+    private mensaje: MensajeService
+    ){}
 
   ngOnInit() {
     this.titleService.setTitle('Registro - BlitzVideo');
@@ -45,7 +51,8 @@ export class RegistroComponent {
 
     this.api.registro(credentials).subscribe(
       (res: any) => {
-        this.router.navigate(['/login']);
+        this.mensaje.setUsuarioRegistradoExitosamente(true);
+        this.router.navigate(['/']);
       },
       (error) => {
         if (error.status === 422 && error.error.email) {

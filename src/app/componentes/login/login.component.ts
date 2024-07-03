@@ -5,6 +5,7 @@ import { StatusService } from '../../servicios/status.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { MensajeService } from '../../servicios/mensaje.service';
 
 enum HttpStatusCode {
   Unauthorized = 401,
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
   public loginError: boolean = false;
   public loginAlerta: string = '';
   public loginStatus: boolean = false;
+  usuarioRegistradoExitosamente: boolean = false;
+
   defaultMensajeDeError: string = 'Error de red. Por favor, inténtalo de nuevo más tarde.';
 
 
@@ -35,11 +38,17 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private status: StatusService,
     private cookie: CookieService,
-    private titleService: Title
+    private titleService: Title,
+    private mensaje: MensajeService
   ) {}
 
   ngOnInit() {
     this.titleService.setTitle('Login - BlitzVideo');
+    this.mensaje.usuarioRegistrado$.subscribe(
+      (registradoExitosamente: boolean) => {
+        this.usuarioRegistradoExitosamente = registradoExitosamente;
+      }
+    );
   }
 
   sendLogin(credentials: any) {
