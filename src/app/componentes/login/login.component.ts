@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { MensajeService } from '../../servicios/mensaje.service';
+import { environment } from '../../../environments/environment.prod';
 
 enum HttpStatusCode {
   Unauthorized = 401,
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   public loginAlerta: string = '';
   public loginStatus: boolean = false;
   usuarioRegistradoExitosamente: boolean = false;
+  serverIp = environment.serverIp
 
   defaultMensajeDeError: string = 'Error de red. Por favor, inténtalo de nuevo más tarde.';
 
@@ -57,7 +59,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('accessToken', res.access_token);
         this.cookie.set('accessToken', res.access_token);
         this.status.isLoggedIn = true;
-        window.location.href = 'http://localhost:3000'; 
+        window.location.href = `${this.serverIp}:3000/#/`; 
       },
       (error) => {
         this.loginAlerta = LoginComponent.mensajesDeError[error.status] || this.defaultMensajeDeError;
