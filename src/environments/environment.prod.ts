@@ -1,8 +1,8 @@
 export const environment = {
     production:true,
-    apiUrl: 'http://localhost:8001/',
-    authApiUrl: 'http://localhost:8000/',
-    serverIp: 'http://localhost:',
+    apiUrl: 'http://192.168.1.7:8001/',
+    authApiUrl: 'http://192.168.1.7:8000/',
+    serverIp: 'http://192.168.1.7:',
 
 
 };
