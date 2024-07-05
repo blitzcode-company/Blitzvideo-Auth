@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('accessToken', res.access_token);
         this.cookie.set('accessToken', res.access_token);
         this.status.isLoggedIn = true;
-        window.location.href = `${this.serverIp}:3000/#/`; 
+        window.location.href = `${this.serverIp}3000/#/`; 
       },
       (error) => {
         this.loginAlerta = LoginComponent.mensajesDeError[error.status] || this.defaultMensajeDeError;
