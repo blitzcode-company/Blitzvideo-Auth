@@ -25,12 +25,15 @@
                   <input type="password" placeholder="Contraseña" name="password"  ngModel name="password">
                 </div>
                 <div class="field padding-bottom--24">
-                  <div *ngIf="loginAlerta" class="error">
-                    {{ loginAlerta }}
-                  </div>         
-                  <div *ngIf="usuarioRegistradoExitosamente">
-                    Usuario registrado con éxito. Por favor, inicia sesión.
-                  </div>         
+                  <div class="mensaje-container">
+                    <div *ngIf="loginAlerta" class="error">
+                      <span>{{ loginAlerta }}</span>
+                      <button class="close-btn" (click)="loginAlerta = ''">×</button>
+                    </div>
+                    <div *ngIf="usuarioRegistradoExitosamente" class="success">
+                      Usuario registrado con éxito. Por favor, inicia sesión.
+                    </div>
+                  </div>
                 </div>
                 <div class="field padding-bottom--24">
                   <button class="boton">Iniciar sesion</button>
