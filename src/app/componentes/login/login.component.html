@@ -21,14 +21,15 @@
                 <div class="field padding-bottom--24">
                   <input type="email" placeholder="Correo electronico"  name="email" ngModel name="email">
                 </div>
-                <div class="field padding-bottom--24">
-                  <input type="password" placeholder="Contraseña" name="password"  ngModel name="password">
+                <div class="field padding-bottom--24 password-field">
+                  <input [type]="showPassword ? 'text' : 'password'" placeholder="Contraseña" name="password" ngModel>
+                  <fa-icon [icon]="showPassword ? 'eye-slash' : 'eye'" (click)="togglePasswordVisibility()"></fa-icon>
                 </div>
-                <div class="field padding-bottom--24">
+                <div class="field padding-bottom--24" *ngIf="loginAlerta || usuarioRegistradoExitosamente">
                   <div class="mensaje-container">
                     <div *ngIf="loginAlerta" class="error">
                       <span>{{ loginAlerta }}</span>
-                      <button class="close-btn" (click)="loginAlerta = ''">×</button>
+                      <button type="button" class="close-btn" (click)="closeAlert($event)">×</button>
                     </div>
                     <div *ngIf="usuarioRegistradoExitosamente" class="success">
                       Usuario registrado con éxito. Por favor, inicia sesión.

@@ -165,19 +165,19 @@ label {
 
 .mensaje-container {
   margin-top: 1rem;
-  padding: 0.5rem; /* Reducido para que sea más compacto */
-  border-radius: 6px; /* Borde más redondeado */
+  padding: 0.5rem; 
+  border-radius: 6px; 
   width: 100%;
 }
 
 .error {
-  background-color: #fbe9e7; /* Fondo naranja claro */
-  color: #d32f2f; /* Texto rojo oscuro */
-  border: 1px solid #fbe9e7; /* Borde naranja claro */
-  padding: 0.5rem; /* Reducido para que sea más compacto */
-  border-radius: 6px; /* Borde más redondeado */
+  background-color: #fbe9e7; 
+  color: #d32f2f; 
+  border: 1px solid #fbe9e7;
+  padding: 0.5rem;
+  border-radius: 6px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  font-size: 12px; /* Tamaño de fuente más pequeño */
+  font-size: 12px; 
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -186,14 +186,14 @@ label {
 
 .error::before {
   content: '⚠️';
-  font-size: 1.2rem; /* Tamaño del icono más pequeño */
+  font-size: 1.2rem; 
 }
 
 .error .close-btn {
   background: none;
   border: none;
   color: #721c24;
-  font-size: 1.2rem; /* Tamaño del botón de cerrar más pequeño */
+  font-size: 1.2rem; 
   cursor: pointer;
 }
 
@@ -201,14 +201,32 @@ label {
   color: #f5c6cb;
 }
 
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-field fa-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-110%);
+  cursor: pointer;
+  color: #888;
+}
+
 .success {
-  background-color: #e8f5e9; /* Fondo verde claro */
-  color: #388e3c; /* Texto verde oscuro */
-  border: 1px solid #c8e6c9; /* Borde verde claro */
-  padding: 0.5rem; /* Reducido para que sea más compacto */
-  border-radius: 6px; /* Borde más redondeado */
+  background-color: #e8f5e9; 
+  color: #388e3c;
+  border: 1px solid #c8e6c9;
+  padding: 0.5rem;
+  border-radius: 6px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  font-size: 12px; /* Tamaño de fuente más pequeño */
+  font-size: 12px; 
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -216,12 +234,12 @@ label {
 }
 
 .success::before {
-  content: '✔️'; /* Puedes cambiar el icono si prefieres otro */
-  font-size: 1.2rem; /* Tamaño del icono más pequeño */
+  content: '✔️';
+  font-size: 1.2rem; 
 }
 
 .field {
-  margin-bottom: 0; /* Elimina el margen extra entre campos */
+  margin-bottom: 0; 
 }
 
 .field input {
@@ -241,7 +259,7 @@ label {
               rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
               rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
               rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-  margin-bottom: 0.5rem; /* Asegura un margen entre el input y el mensaje de error */
+  margin-bottom: 0.5rem; 
 }
 
 input[type="submit"] {

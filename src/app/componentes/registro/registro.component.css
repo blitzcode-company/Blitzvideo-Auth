@@ -200,30 +200,30 @@ a.ssolink {
 }
 
 .error {
-  background-color: #fbe9e7; /* Fondo naranja claro */
-  color: #d32f2f; /* Texto rojo oscuro */
-  border: 1px solid #fbe9e7; /* Borde naranja claro */
-  padding: 0.5rem 0.75rem; /* Reducido para hacerla más compacta */
-  border-radius: 6px; /* Borde más redondeado */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-  font-size: 12px; /* Tamaño del texto más pequeño */
-  font-weight: 500; /* Negrita */
+  background-color: #fbe9e7; 
+  color: #d32f2f; 
+  border: 1px solid #fbe9e7;
+  padding: 0.5rem 0.75rem; 
+  border-radius: 6px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  font-weight: 500; 
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Espacio entre el ícono y el texto */
-  margin-bottom: 0.5rem; /* Espacio más pequeño entre el mensaje de error y el siguiente campo */
+  gap: 0.5rem;
+  margin-bottom: 0.5rem; 
 }
 
 .error::before {
-  content: '⚠️'; /* Emoji de advertencia */
-  font-size: 1rem; /* Tamaño del ícono más pequeño */
+  content: '⚠️'; 
+  font-size: 1rem; 
 }
 
 .error .close-btn {
   background: none;
   border: none;
   color: #d32f2f;
-  font-size: 1.2rem; /* Tamaño del botón de cerrar más pequeño */
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
