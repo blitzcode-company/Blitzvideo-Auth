@@ -18,13 +18,18 @@
                   <input type="text" placeholder="Nombre" name="name" ngModel>
                 </div>
                 <div class="field padding-bottom--24 alineado">
+                  <input type="date" placeholder="Fecha de nacimiento" name="fecha_de_nacimiento" ngModel>
+                </div>
+                <div class="field padding-bottom--24 alineado">
                   <input type="email" placeholder="Correo electronico" name="email" ngModel>
                 </div>
                 <div class="field padding-bottom--24 alineado">
                   <input type="password" placeholder="Contraseña" name="password" ngModel>
+
                 </div>
                 <div class="field padding-bottom--24 alineado">
                   <input type="password" placeholder="Confirmar contraseña" name="password_confirmation" ngModel>
+
                 </div>
                 <div class="field padding-bottom--24">
                   <div *ngIf="sinCredenciales" class="error">

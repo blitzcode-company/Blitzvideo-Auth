@@ -5,6 +5,7 @@ import { StatusService } from '../../servicios/status.service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { MensajeService } from '../../servicios/mensaje.service';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-registro',
@@ -14,6 +15,9 @@ import { MensajeService } from '../../servicios/mensaje.service';
 export class RegistroComponent {
 
   public sinCredenciales: boolean = false;
+  showPassword: boolean = false;
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
   public passwordSinCoincidir: boolean = false;
   usuarioYaExiste = false;
   usuarioRegistradoExitosamente = false;
@@ -38,6 +42,7 @@ export class RegistroComponent {
       !credentials.name ||
       !credentials.email ||
       !credentials.password ||
+      !credentials.fecha_de_nacimiento ||
       !credentials.password_confirmation
     ) {
       this.sinCredenciales = true;
@@ -62,6 +67,10 @@ export class RegistroComponent {
         }
       }
     );
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit(form: NgForm) {

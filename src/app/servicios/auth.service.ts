@@ -28,7 +28,7 @@ export class AuthService {
     const body = {
       grant_type: "password",
       client_id: "1",
-      client_secret: "vqK13cq601PLuhb72P5Hz429EeGhb3equpky5SRN",
+      client_secret: "f4ky50O3lcMVSxfkviWvzULCmf6oVrqeHDnmpjOb",
       username: credentials.email,
       password: credentials.password
 
@@ -49,6 +49,7 @@ export class AuthService {
       name: credentials.name,
       email: credentials.email,
       password: credentials.password,
+      fecha_de_nacimiento: credentials.fecha_de_nacimiento,
       password_confirmation: credentials.password_confirmation
     }
     const httpOptions = {
