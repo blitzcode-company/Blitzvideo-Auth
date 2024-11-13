@@ -1,0 +1,14 @@
+<div class="reset-password-root">
+  <div class="reset-password-box">
+    <h1 class="logoylogin">
+      <img class="logo" src="../../../assets/images/Blitzvideo.png" alt="Blitzvideo Logo">
+    </h1>
+    <h2>Restablecer Contraseña</h2>
+    <form (ngSubmit)="solicitarRestablecimiento()">
+      <label for="email">Correo Electrónico:</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required placeholder="Ingresa tu correo">
+      <button type="submit" class="boton">Enviar Enlace</button>
+    </form>
+    <p>{{ mensaje }}</p>
+  </div>
+</div>

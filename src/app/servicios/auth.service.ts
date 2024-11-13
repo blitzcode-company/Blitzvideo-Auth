@@ -16,6 +16,7 @@ import { environment } from '../../environments/environment.prod';
 export class AuthService {
 
   private authApiUrl = environment.authApiUrl
+  private apiUrl = environment.apiUrl
 
   private usuarioSubject = new BehaviorSubject<any>(null);
   public usuario$: Observable<any> = this.usuarioSubject.asObservable();
@@ -28,7 +29,7 @@ export class AuthService {
     const body = {
       grant_type: "password",
       client_id: "1",
-      client_secret: "f4ky50O3lcMVSxfkviWvzULCmf6oVrqeHDnmpjOb",
+      client_secret: "xiqCh2pzJl2CcGZgqQQEpbVcW1kXeuAeXdeMay11",
       username: credentials.email,
       password: credentials.password
 
@@ -60,7 +61,27 @@ export class AuthService {
     return this.http.post(url, body, httpOptions)
   }
 
- 
+  enviarRestablecerEnlaceCorreo(email: string): Observable<any> {
+    const url = `${this.apiUrl}api/v1/password/email`
+    const body = { email };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    };
+    return this.http.post(url, body, httpOptions);
+  }
+
+  resetPassword(email: string, token: string, password: string, password_confirmation: string): Observable<any> {
+    const url = `${this.apiUrl}api/v1/password/reset`
+    const body = { email, token, password, password_confirmation };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    };
+    return this.http.post(url, body, httpOptions);
+  }
  
 
 }

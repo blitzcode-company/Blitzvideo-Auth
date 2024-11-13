@@ -12,13 +12,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { OlvidarContrasenaComponent } from './componentes/olvidar-contrasena/olvidar-contrasena.component';
+import { ReestablecerContrasenaComponent } from './componentes/reestablecer-contrasena/reestablecer-contrasena.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
+    OlvidarContrasenaComponent,
+    ReestablecerContrasenaComponent
   ],
   imports: [
     BrowserModule,
