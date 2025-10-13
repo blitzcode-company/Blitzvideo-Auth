@@ -21,6 +21,8 @@ export class RegistroComponent {
   public passwordSinCoincidir: boolean = false;
   usuarioYaExiste = false;
   usuarioRegistradoExitosamente = false;
+  isLoading: boolean = false;
+
 
   constructor(private api:AuthService, 
     private router:Router, 
@@ -54,12 +56,17 @@ export class RegistroComponent {
       return;
     }
 
+
+    this.isLoading = true;
+
     this.api.registro(credentials).subscribe(
       (res: any) => {
         this.mensaje.setUsuarioRegistradoExitosamente(true);
         this.router.navigate(['/']);
       },
       (error) => {
+        this.isLoading = false;
+
         if (error.status === 422 && error.error.email) {
           this.usuarioYaExiste = true;
         } else {

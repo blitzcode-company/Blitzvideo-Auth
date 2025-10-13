@@ -1,60 +1,50 @@
-<div class="login-root">
-  <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh; flex-grow: 1;">
-    <div class="loginbackground box-background--white padding-top--64">
-      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
-        <div class="formbg-outer">
-          <div class="formbg">
-            <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-              <h1 class="logoylogin">
-                <img class="logo" src="assets/images/Blitzvideo.png" alt="">
-              </h1>
-            </div>
-            <div class="box-root padding-bottom--24 flex-flex flex-justifyContent--center">
-              <h2>Registro</h2>
-            </div>
-            <div class="formbg-inner padding-horizontal--48">
-              <form #dataform="ngForm" (ngSubmit)="onSubmit(dataform)">
-                <div class="field padding-bottom--24 alineado">
-                  <input type="text" placeholder="Nombre" name="name" ngModel>
-                </div>
-                <div class="field padding-bottom--24 alineado">
-                  <input type="date" placeholder="Fecha de nacimiento" name="fecha_de_nacimiento" ngModel>
-                </div>
-                <div class="field padding-bottom--24 alineado">
-                  <input type="email" placeholder="Correo electronico" name="email" ngModel>
-                </div>
-                <div class="field padding-bottom--24 alineado">
-                  <input type="password" placeholder="Contraseña" name="password" ngModel>
-
-                </div>
-                <div class="field padding-bottom--24 alineado">
-                  <input type="password" placeholder="Confirmar contraseña" name="password_confirmation" ngModel>
-
-                </div>
-                <div class="field padding-bottom--24">
-                  <div *ngIf="sinCredenciales" class="error">
-                    <span>Por favor, completa todos los campos.</span>
-                    <button class="close-btn" (click)="sinCredenciales = false">×</button>
-                  </div>
-                  <div *ngIf="passwordSinCoincidir" class="error">
-                    <span>Las contraseñas no coinciden.</span>
-                    <button class="close-btn" (click)="passwordSinCoincidir = false">×</button>
-                  </div>
-                  <div *ngIf="usuarioYaExiste" class="error">
-                    <span>Ya existe un usuario con ese email.</span>
-                    <button class="close-btn" (click)="usuarioYaExiste = false">×</button>
-                  </div>
-                  <div class="field padding-bottom--24">
-                    <button class="boton" type="submit">Registrarse</button>
-                  </div>
-                </div>
-                <span style="letter-spacing: 0.2px"></span>
-                ¿Ya tienes una cuenta? <a routerLink="/">Haz click aquí</a>
-              </form>
-            </div>
-          </div>
+<div class="auth-root">
+  <div class="auth-card">
+    <div class="logo-container">
+      <img class="logo" src="assets/images/Blitzvideo.png" alt="Blitzvideo Logo">
+    </div>
+    <h2 class="auth-title">Registro</h2>
+    <form #dataform="ngForm" (ngSubmit)="onSubmit(dataform)">
+      <div class="input-group">
+        <input type="text" name="name" ngModel placeholder="Nombre" required>
+      </div>
+      <div class="input-group">
+        <input type="date" name="fecha_de_nacimiento" ngModel required>
+      </div>
+      <div class="input-group">
+        <input type="email" name="email" ngModel placeholder="Correo electrónico" required>
+      </div>
+      <div class="input-group password-group">
+        <input [type]="showPassword ? 'text' : 'password'" name="password" ngModel placeholder="Contraseña" required>
+        <fa-icon [icon]="showPassword ? faEyeSlash : faEye" (click)="togglePasswordVisibility()"></fa-icon>
+      </div>
+      <div class="input-group password-group">
+        <input [type]="showPassword ? 'text' : 'password'" name="password_confirmation" ngModel placeholder="Confirmar contraseña" required>
+        <fa-icon [icon]="showPassword ? faEyeSlash : faEye" (click)="togglePasswordVisibility()"></fa-icon>
+      </div>
+      <div class="alert-container">
+        <div *ngIf="sinCredenciales" class="alert error">
+          <span>Por favor, completa todos los campos.</span>
+          <button class="close-btn" (click)="sinCredenciales = false">×</button>
+        </div>
+        <div *ngIf="passwordSinCoincidir" class="alert error">
+          <span>Las contraseñas no coinciden.</span>
+          <button class="close-btn" (click)="passwordSinCoincidir = false">×</button>
+        </div>
+        <div *ngIf="usuarioYaExiste" class="alert error">
+          <span>Ya existe un usuario con ese email.</span>
+          <button class="close-btn" (click)="usuarioYaExiste = false">×</button>
         </div>
       </div>
-    </div>
+      <button class="btn" type="submit" [disabled]="isLoading">
+        <ng-container *ngIf="!isLoading">Registrarse</ng-container>
+        <ng-container *ngIf="isLoading" class="loader-container">
+          <div class="loader"></div> Cargando...
+        </ng-container>
+      </button>
+      <div class="links">
+        <p>¿Ya tienes una cuenta? <a routerLink="/">Inicia sesión aquí</a></p>
+      </div>
+    </form>
   </div>
 </div>

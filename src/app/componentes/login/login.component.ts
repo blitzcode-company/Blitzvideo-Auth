@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loginStatus: boolean = false;
   usuarioRegistradoExitosamente: boolean = false;
   serverIp = environment.serverIp;
+  isLoading = false;
 
   defaultMensajeDeError: string = 'Error de red. Por favor, inténtalo de nuevo más tarde.';
 
