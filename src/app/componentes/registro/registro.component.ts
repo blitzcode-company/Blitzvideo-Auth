@@ -15,16 +15,21 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 export class RegistroComponent {
 
   public sinCredenciales: boolean = false;
+  public passwordSinCoincidir: boolean = false;
+  public usuarioYaExiste = false;
+  public usuarioRegistradoExitosamente = false;
+  public mensajeError: string = '';
+  public isLoading: boolean = false;
+
   showPassword: boolean = false;
   faEye = faEye;
   faEyeSlash = faEyeSlash;
-  public passwordSinCoincidir: boolean = false;
-  usuarioYaExiste = false;
-  usuarioRegistradoExitosamente = false;
-  isLoading: boolean = false;
 
 
-  constructor(private api:AuthService, 
+
+
+
+  constructor(private authService:AuthService, 
     private router:Router, 
     private status: StatusService, 
     private titleService: Title,     
@@ -36,6 +41,9 @@ export class RegistroComponent {
 
   }
   registroUsuario(credentials: any) {
+
+    this.resetAlerts();
+
     this.sinCredenciales = false;
     this.passwordSinCoincidir = false;
     this.usuarioYaExiste = false;
@@ -59,22 +67,49 @@ export class RegistroComponent {
 
     this.isLoading = true;
 
-    this.api.registro(credentials).subscribe(
-      (res: any) => {
+    this.authService.registro(credentials).subscribe({
+      next: (res: any) => {
         this.mensaje.setUsuarioRegistradoExitosamente(true);
         this.router.navigate(['/']);
       },
-      (error) => {
+      error: (error) => {
         this.isLoading = false;
 
-        if (error.status === 422 && error.error.email) {
-          this.usuarioYaExiste = true;
+        if (error.status === 422 && error.error?.errors) {
+          const errors = error.error.errors;
+
+          if (errors.email && errors.email[0].includes('Ya existe')) {
+            this.usuarioYaExiste = true;
+          } else if (errors.password && errors.password[0].includes('coinciden')) {
+            this.passwordSinCoincidir = true;
+          } else {
+            this.mensajeError = Object.values(errors).flat().join(' ');
+          }
         } else {
-          console.error('Error al registrar usuario', error);
+          this.mensajeError = 'Error inesperado. Por favor, inténtalo de nuevo.';
+          console.error('Error al registrar usuario:', error);
         }
       }
-    );
+    });
   }
+
+  resetAlerts() {
+    this.sinCredenciales = false;
+    this.passwordSinCoincidir = false;
+    this.usuarioYaExiste = false;
+    this.mensajeError = '';
+  }
+
+  closeAlert(type: string) {
+    switch (type) {
+      case 'sinCredenciales': this.sinCredenciales = false; break;
+      case 'passwordSinCoincidir': this.passwordSinCoincidir = false; break;
+      case 'usuarioYaExiste': this.usuarioYaExiste = false; break;
+      case 'mensajeError': this.mensajeError = ''; break;
+    }
+  }
+
+
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;

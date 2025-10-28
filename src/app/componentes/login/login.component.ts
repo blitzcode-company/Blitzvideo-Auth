@@ -13,7 +13,10 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 enum HttpStatusCode {
   Unauthorized = 401,
-  BadRequest = 400
+  BadRequest = 400,
+  Forbidden = 403,
+  NotFound = 404,
+  InternalServerError = 500
 }
 
 @Component({
@@ -38,8 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   static mensajesDeError: { [key: number]: string } = {
     [HttpStatusCode.Unauthorized]: 'Usuario o contraseña incorrectos.',
     [HttpStatusCode.BadRequest]: 'Por favor, verifica tus datos.',
+    [HttpStatusCode.Forbidden]: 'Acceso denegado.',
+    [HttpStatusCode.NotFound]: 'Usuario no encontrado.',
+    [HttpStatusCode.InternalServerError]: 'Error interno del servidor.'
   };
-
   private subscription!: Subscription;
 
   constructor(

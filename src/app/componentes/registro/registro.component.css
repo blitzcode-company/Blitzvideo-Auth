@@ -48,7 +48,6 @@
   box-shadow: 0 0 0 3px rgba(50,177,249,0.2);
 }
 
-/* Password toggle */
 .password-group fa-icon {
   position: absolute;
   right: 12px;
@@ -58,7 +57,6 @@
   color: #888;
 }
 
-/* Botón */
 .btn {
   width: 100%;
   border-radius: 4px;
@@ -80,7 +78,6 @@
   cursor: not-allowed;
 }
 
-/* Loader */
 .loader-container {
   display: flex;
   align-items: center;
@@ -100,7 +97,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Alertas */
 .alert-container {
   margin-bottom: 16px;
 }
@@ -123,7 +119,6 @@
   cursor: pointer;
 }
 
-/* Links */
 .links {
   text-align: center;
   margin-top: 18px;
