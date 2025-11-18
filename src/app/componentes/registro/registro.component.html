@@ -7,26 +7,44 @@
     <h2 class="auth-title">Registro</h2>
 
     <form #dataform="ngForm" (ngSubmit)="onSubmit(dataform)">
-      <div class="input-group">
-        <input type="text" name="name" ngModel placeholder="Nombre" required>
+      <div class="input-group" [ngClass]="{'invalid': name.invalid && name.touched}">
+        <input type="text" name="name" ngModel #name="ngModel" placeholder="Nombre" required>
+        <div class="error-message" *ngIf="name.invalid && name.touched">
+          El nombre es obligatorio.
+        </div>
       </div>
 
-      <div class="input-group">
-        <input type="date" name="fecha_de_nacimiento" ngModel required>
+      <div class="input-group" [ngClass]="{'invalid': fecha_de_nacimiento.invalid && fecha_de_nacimiento.touched}">
+        <input type="date" name="fecha_de_nacimiento" ngModel #fecha_de_nacimiento="ngModel" required>
+        <div class="error-message" *ngIf="fecha_de_nacimiento.invalid && fecha_de_nacimiento.touched">
+          La fecha de nacimiento es obligatoria.
+        </div>
       </div>
 
-      <div class="input-group">
-        <input type="email" name="email" ngModel placeholder="Correo electrónico" required>
+
+      <div class="input-group" [ngClass]="{'invalid': email.invalid && email.touched}">
+        <input type="email" name="email" ngModel #email="ngModel" placeholder="Correo electrónico" required email>
+        <div class="error-message" *ngIf="email.invalid && email.touched">
+          <span *ngIf="email.errors?.['required']">El correo electrónico es obligatorio.</span>
+          <span *ngIf="email.errors?.['email']">El formato del correo no es válido.</span>
+        </div>
       </div>
 
-      <div class="input-group password-group">
-        <input [type]="showPassword ? 'text' : 'password'" name="password" ngModel placeholder="Contraseña" required>
+      <div class="input-group password-group" [ngClass]="{'invalid': password.invalid && password.touched}">
+        <input [type]="showPassword ? 'text' : 'password'" name="password" ngModel #password="ngModel" placeholder="Contraseña" required minlength="6">
         <fa-icon [icon]="showPassword ? faEyeSlash : faEye" (click)="togglePasswordVisibility()"></fa-icon>
+        <div class="error-message" *ngIf="password.invalid && password.touched">
+          <span *ngIf="password.errors?.['required']">La contraseña es obligatoria.</span>
+          <span *ngIf="password.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+        </div>
       </div>
 
-      <div class="input-group password-group">
-        <input [type]="showPassword ? 'text' : 'password'" name="password_confirmation" ngModel placeholder="Confirmar contraseña" required>
+      <div class="input-group password-group" [ngClass]="{'invalid': password_confirmation.invalid && password_confirmation.touched}">
+        <input [type]="showPassword ? 'text' : 'password'" name="password_confirmation" ngModel #password_confirmation="ngModel" placeholder="Confirmar contraseña" required>
         <fa-icon [icon]="showPassword ? faEyeSlash : faEye" (click)="togglePasswordVisibility()"></fa-icon>
+        <div class="error-message" *ngIf="password_confirmation.invalid && password_confirmation.touched">
+          <span>Debes confirmar tu contraseña.</span>
+        </div>
       </div>
 
       <div class="alert-container">

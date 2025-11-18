@@ -40,31 +40,9 @@ export class RegistroComponent {
     this.titleService.setTitle('Registro - BlitzVideo');
 
   }
+
   registroUsuario(credentials: any) {
-
     this.resetAlerts();
-
-    this.sinCredenciales = false;
-    this.passwordSinCoincidir = false;
-    this.usuarioYaExiste = false;
-
-    if (
-      !credentials.name ||
-      !credentials.email ||
-      !credentials.password ||
-      !credentials.fecha_de_nacimiento ||
-      !credentials.password_confirmation
-    ) {
-      this.sinCredenciales = true;
-      return;
-    }
-
-    if (credentials.password !== credentials.password_confirmation) {
-      this.passwordSinCoincidir = true;
-      return;
-    }
-
-
     this.isLoading = true;
 
     this.authService.registro(credentials).subscribe({
@@ -73,22 +51,17 @@ export class RegistroComponent {
         this.router.navigate(['/']);
       },
       error: (error) => {
+        console.log(error)
         this.isLoading = false;
 
         if (error.status === 422 && error.error?.errors) {
-          const errors = error.error.errors;
-
-          if (errors.email && errors.email[0].includes('Ya existe')) {
-            this.usuarioYaExiste = true;
-          } else if (errors.password && errors.password[0].includes('coinciden')) {
-            this.passwordSinCoincidir = true;
-          } else {
-            this.mensajeError = Object.values(errors).flat().join(' ');
-          }
-        } else {
-          this.mensajeError = 'Error inesperado. Por favor, inténtalo de nuevo.';
-          console.error('Error al registrar usuario:', error);
-        }
+        const errores = error.error.errors;
+        this.mensajeError = Object.values(errores)
+          .flat()
+          .join('\n');
+      } else {
+        this.mensajeError = 'Error inesperado. Por favor, inténtalo de nuevo.';
+      }
       }
     });
   }
@@ -115,9 +88,12 @@ export class RegistroComponent {
     this.showPassword = !this.showPassword;
   }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.registroUsuario(form.value);
-    }
+onSubmit(form: NgForm) {
+  if (!form.valid) {
+    this.sinCredenciales = true;
+    form.form.markAllAsTouched(); 
+    return;
   }
+  this.registroUsuario(form.value);
+}
 }
