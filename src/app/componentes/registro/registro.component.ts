@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { MensajeService } from '../../servicios/mensaje.service';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { ThemeService } from '../../servicios/theme.service';
 
 @Component({
   selector: 'app-registro',
@@ -33,7 +34,8 @@ export class RegistroComponent {
     private router:Router, 
     private status: StatusService, 
     private titleService: Title,     
-    private mensaje: MensajeService
+    private mensaje: MensajeService,
+    private themeService: ThemeService,
     ){}
 
   ngOnInit() {

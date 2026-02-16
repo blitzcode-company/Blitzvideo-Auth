@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { MensajeService } from '../../servicios/mensaje.service';
+import { ThemeService } from '../../servicios/theme.service';
 import { environment } from '../../../environments/environment.prod';
 import { Subscription } from 'rxjs';
 
@@ -53,7 +54,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private status: StatusService,
     private cookie: CookieService,
     private titleService: Title,
-    private mensaje: MensajeService
+    private mensaje: MensajeService,
+    private themeService: ThemeService
   ) {}
 
   ngOnInit() {

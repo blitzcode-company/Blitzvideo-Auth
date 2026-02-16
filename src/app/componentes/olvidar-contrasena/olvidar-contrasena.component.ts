@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { Title } from '@angular/platform-browser';
+import { ThemeService } from '../../servicios/theme.service';
 
 
 
@@ -15,6 +16,7 @@ export class OlvidarContrasenaComponent {
 
   constructor(private authService: AuthService,
               private titleService: Title,
+              private themeService: ThemeService,
   ) {}
 
   ngOnInit() {

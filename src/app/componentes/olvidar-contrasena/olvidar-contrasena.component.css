@@ -7,15 +7,25 @@
     justify-content: center;
   }
   
+:host-context(.dark-theme) .reset-password-root {
+  background: rgb(15, 15, 15);
+}
+
   .reset-password-box {
     width: 100%;
     max-width: 448px;
     background: #ffffff;
     padding: 48px;
-    border-radius: 8px;
     box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
     text-align: center;
   }
+
+  :host-context(.dark-theme) .reset-password-box {
+  background: rgba(15, 15, 15, 0.75);
+  border: 1px solid #3a3a3f;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+  color: #e0e0e0;
+}
   
   .logo {
     width: 20vh;
@@ -27,6 +37,10 @@
     color: #1a1f36;
     margin-bottom: 24px;
   }
+
+  :host-context(.dark-theme) h2 {
+  color: #f0f4ff;
+}
   
   label {
     display: block;
@@ -35,6 +49,10 @@
     margin-bottom: 8px;
     text-align: left;
   }
+
+  :host-context(.dark-theme) label {
+  color: #d0d8e0;
+}
   
   input[type="email"] {
     width: 100%;
@@ -46,12 +64,22 @@
     border-radius: 4px;
     margin-bottom: 24px;
     box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
-    outline-color: rgba(84, 105, 212, 0.5);
   }
+
+  :host-context(.dark-theme) input[type="email"] {
+  background: #222;
+  border-color: #444b56;
+  color: #e2e8f0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 0px 1px inset;
+}
   
   input[type="email"]::placeholder {
     color: #888;
   }
+
+  :host-context(.dark-theme) input[type="email"]::placeholder {
+  color: #718096;
+}
   
   .boton {
     width: 100%;
@@ -66,11 +94,20 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
   
+:host-context(.dark-theme) .boton {
+  background-color: #3ab8ff;
+}
+
   .boton:hover {
     background-color: #0282e5;
     transform: scale(1.05);
   }
   
+:host-context(.dark-theme) .boton:hover {
+  background-color: #4cc1ff;
+  transform: scale(1.03);
+}
+
   .boton:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(50, 177, 249, 0.4);
@@ -79,6 +116,10 @@
   .boton:active {
     background-color: #0270d1;
   }
+
+  :host-context(.dark-theme) .boton:active {
+  background-color: #1a9dff;
+}
   
   p {
     margin-top: 16px;
@@ -86,3 +127,20 @@
     color: #4a5568;
   }
   
+  :host-context(.dark-theme) p {
+  color: #a0aec0;
+}
+
+p a {
+  color: #32b1f9;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+.dark-theme p a,
+:host-context(.dark-theme) p a {
+  color: #4cc1ff;
+}

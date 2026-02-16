@@ -7,6 +7,10 @@
   padding: 20px;
 }
 
+:host-context(.dark-theme) .auth-root {
+  background-color: rgb(15, 15, 15);
+}
+
 .auth-card {
   background: #fff;
   padding: 48px;
@@ -15,6 +19,13 @@
   box-shadow: 0 8px 28px rgba(0,0,0,0.15);
   width: 100%;
   max-width: 500px;
+}
+
+:host-context(.dark-theme) .auth-card {
+ background: rgba(15, 15, 15, 0.75);
+  border: 1px solid #3a3a3a;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.6);
+  color: #e5e5e5;
 }
 
 .logo-container {
@@ -32,6 +43,10 @@
   margin-bottom: 28px;
 }
 
+:host-context(.dark-theme) .auth-title {
+  color: #f0f0f0;
+}
+
 .input-group {
   position: relative;
   margin-bottom: 18px;
@@ -43,6 +58,13 @@
   border: 1px solid #ddd;
   font-size: 15px;
 }
+
+:host-context(.dark-theme) .input-group input {
+  background: #222;
+  border-color: #444;
+  color: #f0f0f0;
+}
+
 .input-group input:focus {
   border-color: #32b1f9;
   box-shadow: 0 0 0 3px rgba(50,177,249,0.2);
@@ -57,6 +79,14 @@
   color: #888;
 }
 
+:host-context(.dark-theme) .password-group fa-icon {
+  color: #aaa;
+}
+
+:host-context(.dark-theme) .password-group .fa-icon {
+  color: #aaa;
+}
+
 .btn {
   width: 100%;
   border-radius: 4px;
@@ -69,10 +99,20 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+:host-context(.dark-theme) .btn {
+  background-color: #3ab8ff;
+}
+
+
 .btn:hover:not(:disabled) {
   background-color: #0282e5;
   transform: translateY(-2px);
 }
+:host-context(.dark-theme) .btn:hover:not(:disabled) {
+  background-color: #4cc1ff;
+}
+
 .btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
@@ -93,12 +133,24 @@
   animation: spin 1s linear infinite;
 }
 
+:host-context(.dark-theme) .loader {
+  border: 3px solid rgba(255,255,255,0.12);
+  border-top: 3px solid #4cc1ff;
+}
+
 .input-group.invalid input {
   border: 2px solid #ff4d4d;
   background-color: #fff5f5; 
   color: #d93025;
   box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.15);
   transition: all 0.2s ease;
+}
+
+:host-context(.dark-theme) .input-group.invalid input {
+  background-color: #2f1a1a;
+  color: #ff9999;
+  border-color: #ff6666;
+  box-shadow: 0 0 0 3px rgba(255,77,77,0.3);
 }
 
 .input-group.invalid input::placeholder {
@@ -115,11 +167,20 @@
   color: #ff4d4d;
 }
 
+:host-context(.dark-theme) .input-group.invalid .fa-icon.error {
+  color: #ff7777;
+}
+
 .error-message {
   color: #ff4d4d;
   font-size: 0.85rem;
   margin-top: 4px;
 }
+
+:host-context(.dark-theme) .error-message {
+  color: #ff9999;
+}
+
 
 .alert.error {
   background-color: #ffcccc;
@@ -127,6 +188,12 @@
   padding: 10px;
   border-radius: 8px;
   margin-top: 8px;
+}
+
+:host-context(.dark-theme) .alert.error {
+  background-color: #3c1e1e;
+  color: #ff9999;
+  border-color: #5c2e2e;
 }
 
 @keyframes spin {
@@ -164,6 +231,11 @@
   color: #0282e5;
   text-decoration: none;
 }
+
+:host-context(.dark-theme) .links a {
+  color: #4cc1ff;
+}
+
 .links a:hover {
   text-decoration: underline;
 }
