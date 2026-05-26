@@ -14,13 +14,28 @@
         </div>
       </div>
 
-      <div class="input-group" [ngClass]="{'invalid': fecha_de_nacimiento.invalid && fecha_de_nacimiento.touched}">
-        <input type="date" name="fecha_de_nacimiento" ngModel #fecha_de_nacimiento="ngModel" required>
-        <div class="error-message" *ngIf="fecha_de_nacimiento.invalid && fecha_de_nacimiento.touched">
+    <div class="input-group" [ngClass]="{'invalid': fecha_de_nacimiento.invalid && fecha_de_nacimiento.touched}">
+      
+      
+      <input 
+        type="date" 
+        id="fecha_nacimiento"
+        name="fecha_de_nacimiento" 
+        ngModel 
+        #fecha_de_nacimiento="ngModel" 
+        required
+        [min]="minDate"
+        [max]="today">
+      
+      <div class="error-message" *ngIf="fecha_de_nacimiento.invalid && fecha_de_nacimiento.touched">
+        <span *ngIf="fecha_de_nacimiento.errors?.['required']">
           La fecha de nacimiento es obligatoria.
-        </div>
+        </span>
+        <span *ngIf="fecha_de_nacimiento.touched && !esFechaValida(fecha_de_nacimiento.value)">
+          La fecha no puede estar en el futuro.
+        </span>
       </div>
-
+    </div>
 
       <div class="input-group" [ngClass]="{'invalid': email.invalid && email.touched}">
         <input type="email" name="email" ngModel #email="ngModel" placeholder="Correo electrónico" required email>
