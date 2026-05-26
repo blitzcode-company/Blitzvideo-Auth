@@ -17,6 +17,8 @@ export class AuthService {
 
   private authApiUrl = environment.authApiUrl
   private apiUrl = environment.apiUrl
+  private clientId = environment.clientId
+  private clientSecret = environment.clientSecret
 
   private usuarioSubject = new BehaviorSubject<any>(null);
   public usuario$: Observable<any> = this.usuarioSubject.asObservable();
@@ -28,8 +30,8 @@ export class AuthService {
     const url = `${this.authApiUrl}oauth/token`
     const body = {
       grant_type: "password",
-      client_id: "1",
-      client_secret: "bl7jx7EP0fzG0rB4h85TLAmSb3HpKcqJAUJfQlLF",
+      client_id: `${this.clientId}`,
+      client_secret: `${this.clientSecret}`,
       username: credentials.email,
       password: credentials.password
 
