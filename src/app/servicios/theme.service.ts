@@ -2,6 +2,7 @@ import { Injectable, signal, effect, Inject} from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -35,36 +36,30 @@ export class ThemeService {
     });
   }
 
- private cargarTemaGuardado() {
-    let tema: 'light' | 'dark' | 'auto' | null = null;
+  private cargarTemaGuardado() {
+    const deCookie = this.cookieService.get(this.STORAGE_KEY);
+    const deStorage = localStorage.getItem(this.STORAGE_KEY);
+    const guardado = deCookie || deStorage;
 
-    const cookieValue = this.cookieService.get(this.STORAGE_KEY);
-    if (cookieValue === 'light' || cookieValue === 'dark' || cookieValue === 'auto') {
-      tema = cookieValue as any;
+    if (guardado === 'light' || guardado === 'dark' || guardado === 'auto') {
+      this.temaActual.set(guardado as 'light' | 'dark' | 'auto');
+    } else {
+      this.temaActual.set('auto');
     }
-
-    if (!tema) {
-      const lsValue = localStorage.getItem(this.STORAGE_KEY);
-      if (lsValue === 'light' || lsValue === 'dark' || lsValue === 'auto') {
-        tema = lsValue as any;
-      }
-    }
-
-    this.temaActual.set(tema ?? 'auto');
 
     this.aplicarTema();
   }
 
+
   setTema(tema: 'light' | 'dark' | 'auto') {
     this.temaActual.set(tema);
-
-
-
-    this.cookieService.set(this.STORAGE_KEY, tema);
-
     localStorage.setItem(this.STORAGE_KEY, tema);
+    this.cookieService.set(this.STORAGE_KEY, tema, {
+      expires: 365,
+      path: '/',
+      domain: environment.cookieDomain,
+    });
   }
-
   getTema() {
     return this.temaActual();
   }

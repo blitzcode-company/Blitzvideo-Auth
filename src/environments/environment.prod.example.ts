@@ -4,5 +4,6 @@ export const environment = {
     authApiUrl: 'http://localhost:8000/' ,
     serverIp: 'http://localhost:',
     clientId: '',
-    clientSecret: ''
+    clientSecret: '',
+    cookieDomain: 'localhost'
 };
