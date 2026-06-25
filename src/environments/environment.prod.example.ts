@@ -3,7 +3,5 @@ export const environment = {
     apiUrl: 'http://localhost:8001/',
     authApiUrl: 'http://localhost:8000/' ,
     serverIp: 'http://localhost:',
-    clientId: '',
-    clientSecret: '',
     cookieDomain: 'localhost'
 };
