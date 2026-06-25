@@ -17,34 +17,21 @@ export class AuthService {
 
   private authApiUrl = environment.authApiUrl
   private apiUrl = environment.apiUrl
-  private clientId = environment.clientId
-  private clientSecret = environment.clientSecret
-
   private usuarioSubject = new BehaviorSubject<any>(null);
   public usuario$: Observable<any> = this.usuarioSubject.asObservable();
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
 
-  sendLogin(credentials: any) {
-    const url = `${this.authApiUrl}oauth/token`
-    const body = {
-      grant_type: "password",
-      client_id: `${this.clientId}`,
-      client_secret: `${this.clientSecret}`,
-      username: credentials.email,
+sendLogin(credentials: any) {
+  return this.http.post(
+    `${this.authApiUrl}api/v1/login`,
+    {
+      email: credentials.email,
       password: credentials.password
-
     }
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type' : 'application/json'
-      })
-    };
-    return this.http.post(url, body, httpOptions);
-
-
-  }
+  );
+}
 
   registro(credentials:any) {
     const url = `${this.authApiUrl}api/v1/user`
